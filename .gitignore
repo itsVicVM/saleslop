@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local configuration, credentials and account sessions
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.session
+*.session-*
+credentials.json
+token.json
+config/pack/
+config/ENABLE_LIVE
+
+# Operator workspaces, delivery state and chat exports
+my-sales/
+runs/
+state/
+outbox/
+outreach_state/
+ops_state/
+mail_state/
+jobs_state/
+listener_state/
+sessions/
+pending_replies/
+result.json
+review.json
+journal.jsonl
+*.sqlite*
+*.log

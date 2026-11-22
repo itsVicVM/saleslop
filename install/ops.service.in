@@ -1,0 +1,25 @@
+[Unit]
+Description=Lead generation operator bot
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=@ROOT@/config/client.env
+ConditionPathExists=@ROOT@/config/ENABLE_LIVE
+
+[Service]
+Type=simple
+User=@USER@
+WorkingDirectory=@ROOT@/kit
+Environment=KIT_HOME=@ROOT@/state
+Environment=PYTHONUTF8=1
+ExecStart=@ROOT@/.venv/bin/python @ROOT@/kit/runner/kit_env.py --pack @ROOT@/config/pack --module ops --env-file @ROOT@/config/client.env run -- @ROOT@/.venv/bin/python -m bots.ops.telegram_listener
+Restart=on-failure
+RestartSec=15
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=@ROOT@/state
+
+[Install]
+WantedBy=multi-user.target

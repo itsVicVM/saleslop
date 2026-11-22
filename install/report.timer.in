@@ -1,0 +1,10 @@
+[Unit]
+Description=Collect the sales report daily at 09:00 server time
+
+[Timer]
+OnCalendar=*-*-* 09:00:00
+Persistent=true
+Unit=leadgen-report.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,5 @@
+Subject: {{company}} — [reason for reaching out]
+
+[Describe one relevant observation and ask one question.]
+
+{{sender_name}}

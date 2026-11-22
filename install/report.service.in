@@ -1,0 +1,19 @@
+[Unit]
+Description=Archive the daily sales report
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=6h
+StartLimitBurst=4
+
+[Service]
+Type=oneshot
+Restart=on-failure
+RestartSec=15min
+User=@USER@
+WorkingDirectory=@ROOT@/kit
+Environment=PYTHONUTF8=1
+ExecStart=@ROOT@/.venv/bin/python @ROOT@/kit/runner/kit_env.py --pack @ROOT@/config/pack --module jobs --env-file @ROOT@/config/client.env run -- @ROOT@/.venv/bin/python -m jobs.report --archive @ROOT@/state/reports
+UMask=0077
+StandardOutput=null
+StandardError=journal
+NoNewPrivileges=true

@@ -1,0 +1,39 @@
+{
+  "company": {"timezone": "UTC", "language": "en"},
+  "limits": {"budgets": {"tavily_daily": 0, "serper_daily": 0, "apollo_daily": 0, "findymail_daily": 0, "publicwww_daily": 0}},
+  "sheets": {
+    "spreadsheet_id": "replace-before-connecting",
+    "tabs": {"unsorted": "Inbox"},
+    "columns": {"site": "A", "telegram": "B", "email": "C", "company": "D", "status": "E", "first_touch": "F", "next_touch": "G",
+                "hypothesis": "H", "reply_on": "I", "meeting_on": "J", "accepted_on": "K", "won_on": "L", "lost_on": "M"}
+  },
+  "team": {"members": [{"id": "operator", "display_name": "Operator", "tracker_tab": "Pipeline"}]},
+  "reports": {"language": "en", "statuses": {"active": ["In progress"], "won": ["Interested"], "closed": ["Closed"]}},
+  "jobs": {"list": [{
+    "id": "daily-sales-report", "template": "tracker_report", "schedule": "0 9 * * *",
+    "deliver": "local", "enabled": false
+  }]},
+  "targeting": {
+    "negative_terms": ["directory", "top 10", "comparison", "ranking"],
+    "hypotheses": [{
+      "id": "my-segment",
+      "text": "Describe who buys your product and why",
+      "relevance_terms": ["Replace with a buying signal"],
+      "queries": [{"text": "Replace with your search phrase", "backends": ["keenable"]}]
+    }]
+  },
+  "mail": {
+    "accounts": [{
+      "id": "primary", "address": "sender@replace.invalid", "env_prefix": "MAIL_PRIMARY",
+      "sender_name": "Your name", "outreach": true
+    }],
+    "templates": ["first-touch.txt"],
+    "unnamed_template": "first-touch.txt",
+    "outreach": {
+      "transport": "outbox", "daily_cap_per_mailbox": 1, "warmup": false,
+      "pause_seconds": {"min": 0, "max": 0},
+      "send_window": {"tz": "UTC", "from": "00:00", "to": "23:59", "days": ["mon","tue","wed","thu","fri","sat","sun"]},
+      "bounce_gate_percent": 5
+    }
+  }
+}
